@@ -7,6 +7,7 @@
     <Project Path="backend/MiniTravel.NotificationWorker/MiniTravel.NotificationWorker.csproj" />
   </Folder>
   <Folder Name="/Itens de Solução/">
+    <File Path=".gitignore" />
     <File Path="docker-compose.yml" />
   </Folder>
   <Project Path="MiniTravel.UnitTests/MiniTravel.UnitTests.csproj" Id="39b539ab-871c-46a2-bbf0-6a158849a6d6" />
