@@ -1,0 +1,31 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build
+bin/
+obj/
+
+# .NET
+*.userosscache
+*.sln.docstates
+
+# Testes
+TestResults/
+*.trx
+
+# Node / React
+node_modules/
+dist/
+
+# Variáveis de ambiente
+.env
+.env.*
+
+# Logs
+*.log
+
+# Sistema operacional
+Thumbs.db
+.DS_Store

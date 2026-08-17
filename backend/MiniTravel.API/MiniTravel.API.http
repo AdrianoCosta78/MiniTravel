@@ -1,0 +1,6 @@
+@MiniTravel.API_HostAddress = http://localhost:5105
+
+GET {{MiniTravel.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

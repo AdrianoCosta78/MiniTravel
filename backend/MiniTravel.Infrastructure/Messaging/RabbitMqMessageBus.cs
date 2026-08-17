@@ -1,0 +1,51 @@
+﻿using System.Text;
+using System.Text.Json;
+using Microsoft.Extensions.Configuration;
+using MiniTravel.Application.Interfaces.Messaging;
+using MiniTravel.Application.Messaging;
+using RabbitMQ.Client;
+
+namespace MiniTravel.Infrastructure.Messaging;
+
+public class RabbitMqMessageBus : IMessageBus
+{
+    private readonly IConfiguration _configuration;
+
+    public RabbitMqMessageBus(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
+
+    public async Task PublicarReservaConfirmadaAsync(
+        ReservaConfirmadaMessage message)
+    {
+        var factory = new ConnectionFactory
+        {
+            HostName = _configuration["RabbitMQ:Host"] ?? "localhost",
+            UserName = _configuration["RabbitMQ:User"] ?? "guest",
+            Password = _configuration["RabbitMQ:Password"] ?? "guest"
+        };
+
+        await using var connection =
+            await factory.CreateConnectionAsync();
+
+        await using var channel =
+            await connection.CreateChannelAsync();
+
+        const string queueName = "reserva-confirmada";
+
+        await channel.QueueDeclareAsync(
+            queue: queueName,
+            durable: true,
+            exclusive: false,
+            autoDelete: false);
+
+        var json = JsonSerializer.Serialize(message);
+        var body = Encoding.UTF8.GetBytes(json);
+
+        await channel.BasicPublishAsync(
+            exchange: string.Empty,
+            routingKey: queueName,
+            body: body);
+    }
+}

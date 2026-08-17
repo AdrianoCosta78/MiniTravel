@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/backend/">
+    <Project Path="backend/MiniTravel.API/MiniTravel.API.csproj" Id="4b19a985-5d94-4b0b-839d-f7d5872943dd" />
+    <Project Path="backend/MiniTravel.Application/MiniTravel.Application.csproj" Id="14fb5081-2d2a-4346-92d6-e1dcfb3e8ca5" />
+    <Project Path="backend/MiniTravel.Domain/MiniTravel.Domain.csproj" />
+    <Project Path="backend/MiniTravel.Infrastructure/MiniTravel.Infrastructure.csproj" Id="ef35af85-0080-476e-875f-cbabdab9c3aa" />
+    <Project Path="backend/MiniTravel.NotificationWorker/MiniTravel.NotificationWorker.csproj" />
+  </Folder>
+  <Folder Name="/Itens de Solução/">
+    <File Path="docker-compose.yml" />
+  </Folder>
+  <Project Path="MiniTravel.UnitTests/MiniTravel.UnitTests.csproj" Id="39b539ab-871c-46a2-bbf0-6a158849a6d6" />
+</Solution>
