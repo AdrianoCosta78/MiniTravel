@@ -38,6 +38,16 @@ builder.Services.AddDbContext<MiniTravelDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IMessageBus, RabbitMqMessageBus>();
 builder.Services.AddScoped<ConfirmarReservaCommandHandler>();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("FrontendPolicy", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
@@ -48,6 +58,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("FrontendPolicy");
 
 app.UseHttpsRedirection();
 
